@@ -1,0 +1,121 @@
+ComplaintID,CustomerID,DateLogged,IssueType,Status,EscalationLevel
+1,32,2/6/2025 0:36,ATM,Resolved,Level 1
+2,81,6/7/2025 7:32,Loan,Open,Level 1
+3,3,4/27/2025 1:58,Loan,Open,Level 0
+4,46,4/20/2025 18:04,UPI,Resolved,Level 3
+5,17,3/12/2025 18:09,Digital Banking,In Progress,Level 3
+6,80,5/17/2025 15:37,ATM,Resolved,Level 1
+7,88,3/23/2025 16:46,ATM,Resolved,Level 2
+8,99,3/7/2025 20:01,ATM,Open,Level 3
+9,10,3/30/2025 2:13,Mobile App,In Progress,Level 3
+10,80,7/3/2025 8:36,Mobile App,In Progress,Level 1
+11,21,7/2/2025 23:36,Account,Open,Level 2
+12,3,1/10/2025 6:13,ATM,In Progress,Level 0
+13,100,7/23/2025 14:55,Digital Banking,In Progress,Level 0
+14,119,1/17/2025 14:32,Card,Resolved,Level 1
+15,81,4/14/2025 17:08,Loan,In Progress,Level 0
+16,59,2/14/2025 16:52,Loan,In Progress,Level 3
+17,2,7/7/2025 4:32,Card,Resolved,Level 1
+18,118,4/24/2025 11:22,Digital Banking,Open,Level 0
+19,28,8/12/2025 10:50,Digital Banking,Resolved,Level 2
+20,93,1/5/2025 16:43,Card,Resolved,Level 1
+21,29,8/10/2025 2:58,Card,Resolved,Level 2
+22,86,5/11/2025 17:28,Card,Resolved,Level 3
+23,37,6/28/2025 3:13,UPI,Open,Level 0
+24,90,1/30/2025 23:21,Card,Open,Level 2
+25,103,5/22/2025 21:25,Digital Banking,Open,Level 2
+26,84,1/8/2025 19:56,UPI,Resolved,Level 3
+27,110,7/6/2025 23:05,UPI,In Progress,Level 0
+28,28,3/9/2025 18:25,Card,Open,Level 0
+29,82,2/11/2025 5:42,Card,In Progress,Level 2
+30,116,1/23/2025 11:17,Card,In Progress,Level 1
+31,118,1/27/2025 14:22,Mobile App,In Progress,Level 3
+32,63,6/11/2025 10:59,Card,Resolved,Level 2
+33,55,5/31/2025 11:51,UPI,Resolved,Level 3
+34,19,8/10/2025 4:24,Card,Open,Level 1
+35,113,2/27/2025 21:53,UPI,Open,Level 0
+36,43,6/9/2025 3:05,Loan,Open,Level 0
+37,65,2/13/2025 21:06,Card,Open,Level 0
+38,110,5/16/2025 2:36,Mobile App,In Progress,Level 3
+39,113,1/24/2025 0:17,Digital Banking,In Progress,Level 2
+40,14,4/4/2025 21:31,Digital Banking,In Progress,Level 3
+41,116,7/7/2025 13:11,Mobile App,Resolved,Level 0
+42,49,3/24/2025 17:34,UPI,Resolved,Level 3
+43,41,6/16/2025 18:36,Account,Resolved,Level 1
+44,94,8/9/2025 3:07,Account,Open,Level 0
+45,23,7/19/2025 14:17,Account,Open,Level 1
+46,114,2/27/2025 7:51,Loan,Open,Level 3
+47,30,5/7/2025 0:44,Card,Open,Level 3
+48,77,4/26/2025 19:19,Mobile App,Open,Level 1
+49,52,5/16/2025 19:34,Card,Resolved,Level 3
+50,28,4/9/2025 23:21,Digital Banking,Open,Level 3
+51,96,5/17/2025 7:30,Card,In Progress,Level 0
+52,106,2/13/2025 23:24,UPI,Resolved,Level 3
+53,15,1/13/2025 14:00,Card,In Progress,Level 2
+54,94,4/10/2025 11:49,Account,Open,Level 0
+55,32,2/19/2025 16:39,Loan,Resolved,Level 2
+56,109,4/11/2025 7:08,Account,In Progress,Level 3
+57,34,1/9/2025 16:21,Digital Banking,In Progress,Level 0
+58,83,4/22/2025 12:01,UPI,Resolved,Level 3
+59,83,4/23/2025 10:28,Card,Resolved,Level 2
+60,74,3/7/2025 5:56,Digital Banking,Resolved,Level 3
+61,40,1/6/2025 4:09,Digital Banking,In Progress,Level 2
+62,9,4/29/2025 21:49,Mobile App,In Progress,Level 1
+63,55,3/3/2025 7:22,Loan,Resolved,Level 2
+64,8,4/28/2025 1:01,Account,In Progress,Level 3
+65,56,2/27/2025 8:12,Mobile App,Resolved,Level 1
+66,33,2/20/2025 10:29,Card,Resolved,Level 2
+67,62,6/19/2025 9:24,UPI,Resolved,Level 3
+68,49,2/23/2025 1:12,Card,Open,Level 1
+69,108,2/10/2025 9:14,UPI,Open,Level 3
+70,47,3/21/2025 4:34,Card,In Progress,Level 1
+71,54,7/22/2025 23:46,Account,Open,Level 2
+72,99,4/21/2025 13:19,Mobile App,In Progress,Level 2
+73,106,6/11/2025 19:18,UPI,Open,Level 0
+74,44,1/7/2025 5:48,ATM,In Progress,Level 1
+75,38,4/14/2025 8:46,Account,Open,Level 0
+76,48,7/13/2025 6:02,Card,Resolved,Level 2
+77,57,3/3/2025 16:12,Mobile App,In Progress,Level 3
+78,57,7/7/2025 10:47,ATM,Open,Level 1
+79,86,8/3/2025 16:02,Digital Banking,In Progress,Level 1
+80,80,7/17/2025 12:52,ATM,Open,Level 3
+81,7,7/14/2025 10:04,Mobile App,Open,Level 0
+82,4,2/5/2025 6:06,Mobile App,In Progress,Level 2
+83,13,1/6/2025 2:11,Card,Open,Level 2
+84,66,7/10/2025 22:50,Mobile App,Open,Level 0
+85,98,4/12/2025 21:04,ATM,Open,Level 1
+86,2,5/1/2025 12:16,Card,Open,Level 2
+87,50,8/15/2025 20:23,Mobile App,Open,Level 0
+88,53,8/11/2025 14:33,Loan,Open,Level 2
+89,60,3/7/2025 17:18,Digital Banking,In Progress,Level 0
+90,20,7/24/2025 7:33,Loan,In Progress,Level 0
+91,40,4/23/2025 13:33,Digital Banking,In Progress,Level 1
+92,22,7/12/2025 20:11,Mobile App,Open,Level 3
+93,45,1/14/2025 12:04,Account,Open,Level 2
+94,41,2/22/2025 11:26,Mobile App,Open,Level 3
+95,68,8/15/2025 12:57,Card,Open,Level 3
+96,10,5/4/2025 18:22,Account,Resolved,Level 2
+97,68,2/2/2025 10:09,Mobile App,Resolved,Level 2
+98,97,1/4/2025 5:47,Loan,Open,Level 1
+99,1,1/10/2025 14:58,ATM,Resolved,Level 0
+100,1,7/25/2025 12:05,Account,Resolved,Level 1
+101,44,1/1/2025 18:17,Account,In Progress,Level 3
+102,103,4/29/2025 6:01,Account,Open,Level 1
+103,72,4/26/2025 5:16,Account,In Progress,Level 2
+104,67,7/11/2025 9:31,Loan,In Progress,Level 3
+105,16,1/31/2025 5:46,Loan,Resolved,Level 0
+106,30,6/7/2025 11:52,Card,Open,Level 2
+107,19,5/18/2025 21:27,Account,Resolved,Level 3
+108,18,8/6/2025 0:33,ATM,Resolved,Level 1
+109,99,2/9/2025 22:06,Digital Banking,Resolved,Level 2
+110,86,7/11/2025 12:07,Account,In Progress,Level 3
+111,107,7/7/2025 4:08,Loan,In Progress,Level 2
+112,87,2/6/2025 22:39,ATM,Open,Level 0
+113,32,4/21/2025 23:34,Mobile App,Resolved,Level 3
+114,78,3/16/2025 21:56,Digital Banking,Resolved,Level 3
+115,92,5/27/2025 8:03,Digital Banking,In Progress,Level 1
+116,64,2/24/2025 1:23,Mobile App,Resolved,Level 3
+117,15,3/5/2025 5:38,Account,Open,Level 3
+118,54,3/18/2025 22:53,Card,Open,Level 3
+119,55,2/28/2025 16:41,ATM,Resolved,Level 2
+120,98,1/5/2025 9:58,Account,Resolved,Level 1
