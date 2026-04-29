@@ -5,8 +5,6 @@ from langchain_openai import AzureChatOpenAI, AzureOpenAIEmbeddings
 from azure.storage.blob import BlobServiceClient
 from azure.core.credentials import AzureKeyCredential
 from azure.ai.translation.text import TextTranslationClient
-from azure.ai.contentsafety import ContentSafetyClient
-from azure.core.credentials import AzureKeyCredential
 from langchain_core.messages import SystemMessage, HumanMessage
 # from sqlalchemy import create_engine, text
 from sqlalchemy import create_engine, text
@@ -25,11 +23,6 @@ os.environ.setdefault("REQUESTS_CA_BUNDLE", certifi.where())
 LLM_REQUEST_TIMEOUT = 30  # seconds
 LLM_MAX_RETRIES = 1       # fail fast on network issues
 
-
-safety_client = ContentSafetyClient(
-    endpoint=os.getenv("AZURE_CONTENT_SAFETY_ENDPOINT"),
-    credential=AzureKeyCredential(os.getenv("AZURE_CONTENT_SAFETY_KEY"))
-)
 
 llm = AzureChatOpenAI(
     azure_deployment=os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME"),

@@ -2,7 +2,8 @@
 """
 AutoRouteAI multi-agent workflow (local tools only):
 - Deterministic local LLM classifier (no MCP)
-- Azure Content Safety gate (optional)
+- NeMo Guardrails input gate (harmful content, prompt injection,
+  credential leaks, bank-data exfiltration attempts, off-topic queries)
 - Dual-mode Complaints agent: info vs explicit human escalation
 - Account_Info agent uses get_account_info tool (RBAC via AUTH_CONTEXT; SQL under the hood)
 - All other specialists use search_knowledge_base with domain tags
@@ -30,13 +31,15 @@ from prompts import AGENT_SYSTEM_PROMPTS
 from tools.knowledge_base import search_knowledge_base
 from tools.account_info import get_account_info
 
-# === Optional Content Safety
+# === NeMo Guardrails (replaces Azure Content Safety)
 try:
-    from config import safety_client
-    from azure.ai.contentsafety.models import AnalyzeTextOptions
-except Exception:
-    safety_client = None
-    AnalyzeTextOptions = None
+    from guardrails.nemo_client import check_input_guardrails, GuardrailResult
+    _GUARDRAILS_AVAILABLE = True
+except Exception as _e:
+    print(f"[graph] NeMo Guardrails import failed, guardrails disabled: {_e}")
+    check_input_guardrails = None
+    GuardrailResult = None
+    _GUARDRAILS_AVAILABLE = False
 
 # -------------------------------------------------------------------
 # Support contact (from .env )
@@ -250,18 +253,18 @@ def _invoke_llm_with_tracking(label: str, bound_llm: Any, messages: List[BaseMes
 # -------------------------------------------------------------------
 # Utilities
 # -------------------------------------------------------------------
-def _check_content_safety(text: str) -> dict:
-    if not safety_client or not AnalyzeTextOptions:
-        return {}
+def _run_guardrails(text: str):
+    """
+    Run NeMo Guardrails input rails against the user message.
+    Returns a GuardrailResult (or None if guardrails unavailable).
+    """
+    if not _GUARDRAILS_AVAILABLE or not check_input_guardrails:
+        return None
     try:
-        resp = safety_client.analyze_text(AnalyzeTextOptions(text=text or ""))
-        return {c.category: int(c.severity) for c in resp.categories_analysis}
-    except Exception:
-        return {}
-
-def _content_is_abusive(safety: dict) -> bool:
-    # High or VeryHigh
-    return any(sev >= 2 for sev in safety.values())
+        return check_input_guardrails(text or "")
+    except Exception as e:
+        print(f"[graph] Guardrails check failed: {e}")
+        return None
 
 def _generate_complaint_id() -> str:
     ts = datetime.datetime.utcnow().strftime("%Y%m%d-%H%M%S")
@@ -436,11 +439,23 @@ def orchestrator_node(state: AgentState):
 
     new_summary = _summarize(state.get("summary"), state["messages"])
 
-    # Content Safety guard
-    safety = _check_content_safety(user_text)
-    if safety and _content_is_abusive(safety):
-        print("--- ORCHESTRATOR: Content Safety high -> Moderation_Agent ---")
-        return {"next_agent": "Moderation_Agent", "pending_agents": [], "summary": new_summary}
+    # NeMo Guardrails input gate: blocks harmful content, prompt injection,
+    # credential leaks, and attempts to exfiltrate sensitive bank data.
+    guard = _run_guardrails(user_text)
+    if guard is not None and not guard.allowed:
+        print(f"--- ORCHESTRATOR: Guardrail blocked ({guard.reason}) -> Moderation_Agent ---")
+        refusal = guard.bot_response or (
+            "I'm unable to process that request. I can only help with "
+            "banking-related questions about your own account."
+        )
+        blocked_msg = AIMessage(content=refusal)
+        blocked_msg.name = "Moderation_Agent"
+        return {
+            "messages": [blocked_msg],
+            "next_agent": END,
+            "pending_agents": [],
+            "summary": new_summary,
+        }
 
     # Local classification (no MCP)
     routes = _local_llm_classify(user_text, new_summary)
@@ -601,7 +616,7 @@ def _router(state: AgentState):
 workflow.add_conditional_edges(
     "Orchestrator",
     lambda s: s["next_agent"],
-    {name: name for name, _ in AGENT_DOMAINS} | {"Escalate": "Escalate"},
+    {name: name for name, _ in AGENT_DOMAINS} | {"Escalate": "Escalate", END: END},
 )
 workflow.add_conditional_edges("Tool_Executor", _router, {name: name for name, _ in AGENT_DOMAINS})
 for name, _ in AGENT_DOMAINS:
